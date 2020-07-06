@@ -1,0 +1,10 @@
+{
+  "name": "apt4me",
+  "version": "0.0.0",
+  "description": "apt4me",
+  "main": "server.js",
+  "author": {
+    "name": "Elizabeth Berry",
+    "email": "ejberry1995@gmail.com"
+  }
+}
