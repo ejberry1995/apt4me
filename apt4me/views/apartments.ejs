@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <%- include ('./partials/shared/head') %>
+</head>
+
+<body>
+    <div class="container">
+        <%- include ('./partials/shared/header') %>
+        <!-- Modals -->
+        <%- include ('./partials/modals/newApt') %>
+        <%- include ('./partials/modals/editApt') %>
+        <%- include ('./partials/modals/newTag') %>
+
+
+        <p>My Apartments</p>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAptModal"
+            onclick="loadAptCreator()">
+            New
+        </button>
+
+        <table id="apt-table" class="table table-hover">
+            <% if (apartments.length == 0) { %>
+            <p>Add some apartments to see them here</p>
+            <% } 
+           else { %>
+            <thead>
+                <tr>
+                    <th>Apartment Name</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>Rent</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id='aptList'>
+                <% for (var i = 0; i < apartments.length; i++) {%>
+                <tr>
+                    <td> <%= apartments[i].name %> </td>
+                    <td> <%= apartments[i].beds %> </td>
+                    <td> <%= apartments[i].baths %> </td>
+                    <td> <%= apartments[i].rent %> </td>
+                    <td><button type='button' data-toggle="modal" data-target="#editAptModal"
+                            onclick="loadAptEditor('<%= i %>')">edit</button>
+                            <button type='button' 
+                            onclick="deleteApartment('<%= i %>')">delete</button>
+                    </td>
+                </tr>
+                <% }} %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

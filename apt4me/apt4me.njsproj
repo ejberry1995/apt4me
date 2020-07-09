@@ -28,9 +28,59 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="public\javascripts\aptManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\javascripts\tagsManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\apartments.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\index.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="views\apartments.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\error.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\index.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\modals\editApt.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\modals\newApt.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\modals\newTag.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\shared\footer.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\shared\head.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\shared\header.ejs">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\javascripts\" />
+    <Folder Include="public\stylesheets\" />
+    <Folder Include="routes\" />
+    <Folder Include="views\" />
+    <Folder Include="views\partials\" />
+    <Folder Include="views\partials\modals\" />
+    <Folder Include="views\partials\shared\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
