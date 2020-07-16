@@ -7,32 +7,34 @@
 </head>
 
 <body>
+    <%- include ('./partials/shared/header') %>
     <div class="container">
-        <%- include ('./partials/shared/header') %>
         <!-- Modals -->
         <%- include ('./partials/modals/newApt') %>
         <%- include ('./partials/modals/editApt') %>
+        <%- include ('./partials/modals/viewApt') %>
         <%- include ('./partials/modals/newTag') %>
-
-
-        <p>My Apartments</p>
-
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAptModal"
+        
+        <H2>My Apartments</H2>
+        <div id="toolbar" class="buttons-toolbar">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAptModal"
             onclick="loadAptCreator()">
-            New
-        </button>
+                New Apartment
+            </button>
+        </div>
 
-        <table id="apt-table" class="table table-hover">
+        <table id="apt-table" class="table table-hover"  data-toolbar="#toolbar" data-toggle="table" data-search="true">
             <% if (apartments.length == 0) { %>
             <p>Add some apartments to see them here</p>
             <% } 
            else { %>
             <thead>
                 <tr>
-                    <th>Apartment Name</th>
-                    <th>Bedrooms</th>
-                    <th>Bathrooms</th>
-                    <th>Rent</th>
+                    <th data-field="name" data-sortable="true">Floorplan Name</th>
+                    <th data-field="complex" data-sortable="true">Apartment Complex</th>
+                    <th data-field="beds" data-sortable="true" >Bedrooms</th>
+                    <th data-field="baths" data-sortable="true" >Bathrooms</th>
+                    <th data-field="rent" data-sortable="true" >Rent</th>
                     <th></th>
                 </tr>
             </thead>
@@ -40,6 +42,7 @@
                 <% for (var i = 0; i < apartments.length; i++) {%>
                 <tr>
                     <td> <%= apartments[i].name %> </td>
+                    <td> <%= apartments[i].complex %> </td>
                     <td> <%= apartments[i].beds %> </td>
                     <td> <%= apartments[i].baths %> </td>
                     <td> <%= apartments[i].rent %> </td>

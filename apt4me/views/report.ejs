@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <%- include ('./partials/shared/head') %>
+</head>
+
+<body>
+    <%- include ('./partials/shared/header') %>
+    <div class='container'>
+
+        <!--Modals-->
+        <%- include ('./partials/modals/viewApt') %>
+
+        <% var apartments = data.apartments; %>
+        <% var scores = data.scores; %>
+
+        <% if (apartments.length !== 0 && scores.length !== 0) { %>
+        <table id="scoreReportTable" class="table table-hover"  data-toggle="table" data-search="true" data-sort-name="score" data-sort-order="desc">
+            <thead>
+                <tr>
+                    <th data-field="score" data-sortable="true">Score</th>
+                    <th data-field="name" data-sortable="true">Floorplan Name</th>
+                    <th data-field="complex" data-sortable="true">Apartment Complex</th>
+                    <th data-field="beds" data-sortable="true" >Bedrooms</th>
+                    <th data-field="baths" data-sortable="true" >Bathrooms</th>
+                    <th data-field="rent" data-sortable="true" >Rent</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id='aptList'>
+                <% for (var i = 0; i < apartments.length; i++) {%>
+                <tr>
+                    <td> <%= scores[i] %> </td>
+                    <td> <%= apartments[i].name %> </td>
+                    <td> <%= apartments[i].complex %></td>
+                    <td> <%= apartments[i].beds %> </td>
+                    <td> <%= apartments[i].baths %> </td>
+                    <td> <%= apartments[i].rent %> </td>
+                    <td><button type='button' data-toggle="modal" data-target="#viewAptModal"
+                        onclick="loadAptViewer('<%= i %>')">View Details</button>
+                </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <% } %>
+        
+    </div>
+</body>

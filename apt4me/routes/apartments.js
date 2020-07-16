@@ -1,11 +1,7 @@
 const mongo = require('mongodb');
 var express = require('express');
 var router = express.Router();
-
-function decodeID(id) {
-    decodedID = Buffer.from(id, 'base64').toString('ascii')
-    return new mongo.ObjectID(decodedID);
-}
+var functions = require("../functions")
 
 router.get('/:id', function (req, res) {
     console.log('GET apartments');
@@ -13,7 +9,7 @@ router.get('/:id', function (req, res) {
     var dbo = req.db;
     
     //NWYwMzg0NzY3YmZjNmQzZTNjM2E5ODZi
-    id = decodeID(req.params.id);
+    id = functions.decodeID(req.params.id);
 
     var query = {
         '_id': id
@@ -34,7 +30,7 @@ router.get('/:id/all', function (req, res) {
     var dbo = req.db;
 
     //NWYwMzg0NzY3YmZjNmQzZTNjM2E5ODZi
-    id = decodeID(req.params.id);
+    id = functions.decodeID(req.params.id);
 
     var query = {
         '_id': id
@@ -51,7 +47,7 @@ router.get('/:id/all', function (req, res) {
 
 router.post('/:id/new', function (req, res) {
     var dbo = req.db;
-    id = decodeID(req.params.id);
+    id = functions.decodeID(req.params.id);
 
     var query = {
         '_id': id
@@ -93,7 +89,7 @@ router.put('/:id/edit', function (req, res) {
     index = req.body.index;
     console.log('index: ' + index)
 
-    id = decodeID(req.params.id);
+    id = functions.decodeID(req.params.id);
 
     var query = {
         '_id': id
@@ -136,7 +132,7 @@ router.delete('/:id/delete', function (req, res) {
     index = req.body.index;
     console.log('index: ' + index)
 
-    id = decodeID(req.params.id);
+    id = functions.decodeID(req.params.id);
 
     var query = {
         '_id': id
@@ -182,7 +178,7 @@ router.get('/:id/details', function (req, res) {
     var dbo = req.db;
     console.log("index: " + req.query.index)
     index = req.query.index;
-    id = decodeID(req.params.id);
+    id = functions.decodeID(req.params.id);
 
     var query = {
         '_id': id
@@ -206,7 +202,7 @@ router.get('/:id/details', function (req, res) {
 router.get('/:id/tags', function (req, res) {
     var dbo = req.db;
 
-    var id = decodeID(req.params.id);
+    var id = functions.decodeID(req.params.id);
     var query = {
         '_id': id
     };
@@ -231,7 +227,7 @@ router.get('/:id/tags', function (req, res) {
 router.post('/:id/tag', function (req, res) {
     var dbo = req.db;
 
-    var id = decodeID(req.params.id);
+    var id = functions.decodeID(req.params.id);
     var query = {
         '_id': id
     };
@@ -240,9 +236,12 @@ router.post('/:id/tag', function (req, res) {
         if (err) throw err;
         console.log('Successful retrieval');
         console.log(doc);
-        doc['customTags'].push(req.body.newTag);
 
-        tags = ['community grills','hottubs']
+        if (doc['customTags'][0] === "")
+            doc['customTags'][0] = req.body.newTag;
+        else
+            doc['customTags'].push(req.body.newTag);
+
         console.log('after push');
         console.log(doc);
         var newValues = {

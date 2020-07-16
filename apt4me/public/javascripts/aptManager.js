@@ -29,8 +29,10 @@ function createApartment() {
 
     var params = { 'apartment': apartment };
 
+    var id = getId();
+
     $.ajax({
-        url: window.location.pathname + '/new',
+        url: '/apartments/' + id + '/new',
         method: 'POST',
         data: params,
         success: function (data) {
@@ -47,8 +49,10 @@ function createApartment() {
 function loadAptEditor(index) {
     generateTagButtons('edit');
 
+    var id = getId();
+
     $.ajax({
-        url: window.location.pathname + '/details',
+        url: '/apartments/' + id + '/details',
         data: {'index': index },
         method: 'GET',
         success: function (data) {
@@ -77,7 +81,6 @@ function loadAptEditor(index) {
             })
         }
     });
-    //do something to prosess the json response
 }
 
 function updateApartment() {
@@ -92,12 +95,17 @@ function updateApartment() {
 
     var tags = getSelectedTags('edit');
 
-    var apartment = { 'complex': complex, 'name': name, 'beds': beds, 'baths': baths, 'rent': rent, 'deposit': deposit, 'sqft': sqft, 'tags': tags };
+    var apartment = {
+        'complex': complex, 'name': name, 'beds': beds, 'baths': baths,
+        'rent': rent, 'deposit': deposit, 'sqft': sqft, 'tags': tags
+    };
 
-    var params = {'index': index, 'apartment': apartment };
+    var params = { 'index': index, 'apartment': apartment };
+
+    var id = getId();
 
     $.ajax({
-        url: window.location.pathname + '/edit',
+        url: '/apartments/' + id + '/edit',
         method: 'PUT',
         data: params,
         success: function (data) {
@@ -116,8 +124,10 @@ function updateApartment() {
 function deleteApartment(index) {
     var params = {'index': index };
 
+    var id = getId();
+
     $.ajax({
-        url: window.location.pathname + '/delete',
+        url: '/apartments/' + id + '/delete',
         method: 'DELETE',
         data: params,
         success: function (data) {
@@ -135,8 +145,10 @@ function refreshAptList() {
     //clear to prevent duplication
     $('#aptList').empty();
 
+    var id = getId();
+
     $.ajax({
-        url: window.location.pathname + '/all',
+        url: '/apartments/' + id + '/all',
         method: 'GET',
         success: function (data) {
             $('#aptList').empty();
@@ -162,6 +174,59 @@ function refreshAptList() {
 
                 $(row).appendTo('#aptList');
             }
+        }
+    });
+}
+
+function loadAptViewer(index) {
+    $(`#viewAptTagGroup`).empty();
+
+    var id = getId();
+
+    $.ajax({
+        url: '/apartments/' + id + '/details',
+        data: { 'index': index },
+        method: 'GET',
+        success: function (data) {
+            $('#indexView').val(index);
+            $('#complexView').attr('placeholder', data.apartment.complex);
+            $('#complexView').val(data.apartment.complex);
+            $('#nameView').attr('placeholder', data.apartment.name);
+            $('#nameView').val(data.apartment.name);
+            $('#rentView').attr('placeholder', data.apartment.rent);
+            $('#rentView').val(data.apartment.rent);
+            $('#depositView').attr('placeholder', data.apartment.deposit);
+            $('#depositView').val(data.apartment.deposit);
+            $('#bedsView').attr('placeholder', data.apartment.beds);
+            $('#bedsView').val(data.apartment.beds);
+            $('#bathsView').attr('placeholder', data.apartment.baths);
+            $('#bathsView').val(data.apartment.baths);
+            $('#sqftView').attr('placeholder', data.apartment.sqft);
+            $('#sqftView').val(data.apartment.sqft);
+
+            selected = data.apartment.tags;
+
+            $.each(selected, function (key, value) {
+                console.log(value);
+                var tagButton = $('<span/>', {
+                    id: value.replace(" ", "-"),
+                    class: "btn btn-primary active",
+                    text: value,
+                    
+                });
+
+                tagButton.append($('<input/>', {
+                    type: 'checkbox',
+                    name: 'tags',
+                    value: value,
+                    checked: true,
+                    disabled: true
+                }));
+
+                targetID = '#viewAptTagGroup'
+                $(tagButton).appendTo(targetID);
+
+            })
         }
     });
 }

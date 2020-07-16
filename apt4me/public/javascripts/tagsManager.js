@@ -3,8 +3,11 @@ function generateTagButtons(context) {
     $(`#${context}AptTagGroup`).empty();
 
     console.log('preparing to generate tag buttons');
+
+    var id = getId();
+
     $.ajax({
-        url: window.location.pathname + '/tags',
+        url: '/apartments/' + id + '/tags',
         method: 'GET',
         success: function (data) {
             console.log('successful retrieval of tags');
@@ -46,8 +49,10 @@ function createTag() {
         console.log('newTag: ' + newTag);
         var params = { 'newTag': newTag };
 
+        var id = getId();
+
         $.ajax({
-            url: window.location.pathname + '/tag',
+            url: '/apartments/' + id + '/tag',
             method: 'POST',
             data: params,
             success: function (data) {
@@ -60,10 +65,8 @@ function createTag() {
             error: function (data) {
                 console.log('failed to add tag');
             }
-
         });
-    }
-    
+    } 
 }
 
 function removeTag() {

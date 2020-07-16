@@ -13,6 +13,8 @@ var url = 'mongodb://localhost:27017/';
 //routes
 var indexRouter = require('./routes/index');
 var apartmentRouter = require('./routes/apartments');
+var reportRouter = require('./routes/reports');
+var optionsRouter = require('./routes/options');
 
 MongoClient.connect(url, { useUnifiedTopology: true },
     function (err, client) {
@@ -41,6 +43,8 @@ MongoClient.connect(url, { useUnifiedTopology: true },
 
         app.use('', indexRouter);
         app.use('/apartments', apartmentRouter);
+        app.use('/report', reportRouter);
+        app.use('/options', optionsRouter);
 
         // catch 404 and forward to error handler
         app.use(function (req, res, next) {
@@ -72,7 +76,6 @@ MongoClient.connect(url, { useUnifiedTopology: true },
                 error: {}
             });
         });
-
 
         // ========================
         // Listen

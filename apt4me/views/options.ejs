@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <%- include ('./partials/shared/head') %>
+</head>
+
+<body>
+    <%- include ('./partials/shared/header') %>
+    <% var targetRent = data.targetRent%>
+    <% var allTags = data.allTags %>
+    <% var priorityTags = data.priorityTags %> 
+    <div class="container">
+
+        <!-- Modals -->
+        <%- include ('./partials/modals/newApt') %>
+        <%- include ('./partials/modals/editApt') %>
+        <%- include ('./partials/modals/newTag') %>
+        <p>Options</p>
+
+        <div>
+            Ideal monthly rent: <input id='targetRent' name='targetRent' placeholder='<%=targetRent%>' value='<%=targetRent%>' >
+            Priority Tags
+            <div id='priorityAptTagGroup' class="btn-group-toggle" data-toggle="buttons">
+                <% allTags.forEach(tag => { %>
+                    <% id = tag.replace(" ", "-"); %>
+                    
+                    <% if (priorityTags.includes(tag)) { %>
+                        <span id='<%= id %>' class= 'btn btn-primary active' ><%=tag%>
+                        <input type='checkbox' name='tags' value='<%=tag%>' checked>
+                        </span>
+                    <% } else { %>
+                        <span id='<%= id %>' class= 'btn btn-primary'><%=tag%>
+                        <input type='checkbox' name='tags' value='<%=tag%>'>
+                        </span>
+                    <% }}) %>
+
+                    <button type='button' onclick='updateOptions()'>update</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

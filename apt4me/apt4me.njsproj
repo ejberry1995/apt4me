@@ -28,7 +28,22 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="functions.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\javascripts\aptManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\javascripts\navigation.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\javascripts\optionManager.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\options.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\reports.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\javascripts\tagsManager.js">
@@ -52,6 +67,9 @@
     <Content Include="views\index.ejs">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\options.ejs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\partials\modals\editApt.ejs">
       <SubType>Code</SubType>
     </Content>
@@ -59,6 +77,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\partials\modals\newTag.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\modals\viewApt.ejs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\partials\shared\footer.ejs">
@@ -70,6 +91,7 @@
     <Content Include="views\partials\shared\header.ejs">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\report.ejs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
