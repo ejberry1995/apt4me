@@ -10,23 +10,68 @@
         </button>
       </div>
       <div class="modal-body">
-        Apartment Complex: <input id='complexEdit' name='complexEdit'>
-        Floorplan Name: <input id= 'nameEdit' name='nameEdit'>
         <input id='indexEdit' name='indexEdit' hidden>
-        Beds: <input id='bedsEdit' name='bedsEdit'>
-        Baths: <input id='bathsEdit' name='bathsEdit'>
-        Rent: $<input id='rentEdit' name='rentEdit'>
-        Deposit: $<input id='depositEdit' name='depositEdit'>
-        SQ. Ft: <input id='sqftEdit' name='sqftEdit'>
 
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Apartment Complex</span>
+          </div>
+          <input type="text" id='complexEdit' name='complexEdit' class="form-control" aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Floorplan Name</span>
+          </div>
+          <input type="text" class="form-control" id= 'nameEdit' name='nameEdit' aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Beds</span>
+          </div>
+          <input type="text" class="form-control" id='bedsEdit' name='bedsEdit' aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Baths</span>
+          </div>
+          <input type="text" class="form-control" id='bathsEdit' name='bathsEdit' aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">SQFT</span>
+          </div>
+          <input type="text" class="form-control" id='sqftEdit' name='sqftEdit' aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Rent</span>
+          </div>
+          <input type="text" class="form-control" id='rentEdit' name='rentEdit' aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Deposit</span>
+          </div>
+          <input type="text" class="form-control" id='depositEdit' name='depositEdit' aria-describedby="basic-addon1">
+        </div>
+
+        <h3>Apartment Features</h3>
         <div id='editAptTagGroup' class="btn-group-toggle" data-toggle="buttons">
           <!--tags buttons generated here-->
         </div>
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#newTagModal" onclick="loadNewTagCreator('edit')"> + </button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="updateApartment()">Save</button>
+        <button type='button' class="btn btn-danger"
+            onclick="deleteApartment()">delete</button>
+        <button type="button" class="btn btn-success" onclick="updateApartment()">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>

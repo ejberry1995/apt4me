@@ -10,14 +10,57 @@
         </button>
       </div>
       <div class="modal-body">
-        Apartment Complex: <input id='complexView' name='complexView' class='form-control-plaintext' readonly >
-        Floorplan Name: <input id= 'nameView' name='nameView' class='form-control-plaintext' readonly>
+
         <input id='indexView' name='indexView' hidden>
-        Beds: <input id='bedsView' name='bedsView' class='form-control-plaintext' readonly>
-        Baths: <input id='bathsView' name='bathsView' class='form-control-plaintext' readonly>
-        Rent: $<input id='rentView' name='rentView' class='form-control-plaintext' readonly>
-        Deposit: $<input id='depositView' name='depositViewt' class='form-control-plaintext' readonly>
-        SQ. Ft: <input id='sqftView' name='sqftView' class='form-control-plaintext' readonly>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Apartment Complex</span>
+          </div>
+          <input type="text" id='complexView' name='complexView' class="form-control" aria-describedby="basic-addon1" readonly>
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Floorplan Name</span>
+          </div>
+          <input type="text" class="form-control" id= 'nameView' name='nameView' aria-describedby="basic-addon1" readonly>
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Beds</span>
+          </div>
+          <input type="text" class="form-control" id='bedsView' name='bedsView' aria-describedby="basic-addon1" readonly>
+        </div>
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Baths</span>
+          </div>
+          <input type="text" class="form-control" id='bathsView' name='bathsView' aria-describedby="basic-addon1" readonly>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">SQFT</span>
+          </div>
+          <input type="text" class="form-control" id='sqftView' name='sqftView' aria-describedby="basic-addon1" readonly>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Rent</span>
+          </div>
+          <input type="text" class="form-control" id='rentView' name='rentView' aria-describedby="basic-addon1" readonly>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Deposit</span>
+          </div>
+          <input type="text" class="form-control" id='depositView' name='depositView' aria-describedby="basic-addon1" readonly>
+        </div>
 
         <div id='viewAptTagGroup' class="btn-group-toggle" data-toggle="buttons">
           <!--tags buttons generated here-->
@@ -25,7 +68,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="updateApartment()">Save</button>
       </div>
     </div>
   </div>

@@ -20,7 +20,11 @@ router.get('/:id', function (req, res) {
         console.log('Successful retrieval');
         console.log(doc);
 
-        res.render('apartments.ejs', { 'status': 200, 'apartments': doc.apartments });
+        var apartments = [];
+        if (doc.apartments)
+            apartments = apartments.concat(doc.apartments);
+
+        res.render('apartments.ejs', { 'status': 200, 'apartments': apartments });
     });
 });
 
@@ -41,7 +45,11 @@ router.get('/:id/all', function (req, res) {
         console.log('Successful retrieval');
         console.log(doc);
 
-        res.status(200).json({ 'status': 200, 'apartments': doc.apartments });
+        var apartments = [];
+        if (doc.apartments)
+            apartments = apartments.concat(doc.apartments);
+
+        res.status(200).json({ 'status': 200, 'apartments': apartments });
     });
 });
 
@@ -57,16 +65,19 @@ router.post('/:id/new', function (req, res) {
         if (err) throw err;
         console.log('Successful retrieval');
         console.log(doc);
-        doc['apartments'].push(req.body.apartment);
 
-        console.log('after push');
-        console.log(doc);
+        var apartments = [];
+        if (doc.apartments)
+            apartments = apartments.concat(doc.apartments);
+
+        apartments.push(req.body.apartment);
+
         var newValues = {
-            $set: { "apartments": doc.apartments }
+            $set: { "apartments": apartments }
         }
 
         try {
-            dbo.collection("sessions").updateOne(query, newValues, function (err, res) {
+            dbo.collection("sessions").updateOne(query, newValues, function (err, doc) {
                 if (err) throw err;
                 console.log("Document updated successfully");
                 res.status(200).json({ 'success': true });
@@ -78,7 +89,6 @@ router.post('/:id/new', function (req, res) {
         }
 
     });
-
     //res.status(400).json({ 'success': false }); //look up specific status code
 })
 
@@ -207,10 +217,8 @@ router.get('/:id/tags', function (req, res) {
         '_id': id
     };
 
-    dbo.collection('config').findOne({}, function (err, doc) {
-        if (err) throw err;
-        console.log(doc.defaultTags);
-        var defaultTags = doc.defaultTags;
+    functions.loadDefaultTags(dbo, function (defaultTags) {
+        console.log(defaultTags);
 
         dbo.collection('sessions').findOne(query, function (err, doc) {
             if (err) throw err;

@@ -12,14 +12,56 @@
       <div class="modal-body">
 
         <form >
-          Apartment Complex: <input id='complex' name='complex'>
-          Floorplan Name: <input id= 'name' name='name'>
-          Beds: <input id='beds' name='beds'>
-          Baths: <input id='baths' name='baths'>
-          Rent: $<input id='rent' name='rent'>
-          Deposit: $<input id='deposit' name='deposit'>
-          SQ. Ft: <input id='sqft' name='sqft'>
-
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Apartment Complex</span>
+            </div>
+            <input type="text" id='complexNew' name='complexNew' class="form-control" aria-describedby="basic-addon1">
+          </div>
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Floorplan Name</span>
+            </div>
+            <input type="text" class="form-control" id= 'nameNew' name='nameNew' aria-describedby="basic-addon1">
+          </div>
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Beds</span>
+            </div>
+            <input type="text" class="form-control" id='bedsNew' name='bedsNew' aria-describedby="basic-addon1">
+          </div>
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Baths</span>
+            </div>
+            <input type="text" class="form-control" id='bathsNew' name='bathsNew' aria-describedby="basic-addon1">
+          </div>
+  
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">SQFT</span>
+            </div>
+            <input type="text" class="form-control" id='sqftNew' name='sqftNew' aria-describedby="basic-addon1">
+          </div>
+  
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Rent</span>
+            </div>
+            <input type="text" class="form-control" id='rentNew' name='rentNew' aria-describedby="basic-addon1">
+          </div>
+  
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Deposit</span>
+            </div>
+            <input type="text" class="form-control" id='depositNew' name='depositNew' aria-describedby="basic-addon1">
+          </div>
+  
+          <h3>Apartment Features</h3>
           <div id='newAptTagGroup' class="btn-group-toggle" data-toggle="buttons">
             <!--tags buttons generated here-->
           </div>
@@ -28,8 +70,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="createApartment()">Create</button>
+        <button type="button" class="btn btn-success" onclick="createApartment()">Create</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>

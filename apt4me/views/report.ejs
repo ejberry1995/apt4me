@@ -12,9 +12,16 @@
 
         <!--Modals-->
         <%- include ('./partials/modals/viewApt') %>
-
+        <h2>Aptness Report</h2>
         <% var apartments = data.apartments; %>
         <% var scores = data.scores; %>
+        <% var alerts = data.alerts; %>
+        <% if (alerts)  { %>
+            <% for (var i = 0; i < alerts.length; i++) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= alerts[i]; %>
+                </div>
+            <% }} %>
 
         <% if (apartments.length !== 0 && scores.length !== 0) { %>
         <table id="scoreReportTable" class="table table-hover"  data-toggle="table" data-search="true" data-sort-name="score" data-sort-order="desc">
@@ -38,7 +45,7 @@
                     <td> <%= apartments[i].beds %> </td>
                     <td> <%= apartments[i].baths %> </td>
                     <td> <%= apartments[i].rent %> </td>
-                    <td><button type='button' data-toggle="modal" data-target="#viewAptModal"
+                    <td><button type='button' class="btn btn-primary" data-toggle="modal" data-target="#viewAptModal"
                         onclick="loadAptViewer('<%= i %>')">View Details</button>
                 </td>
                 </tr>

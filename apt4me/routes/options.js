@@ -4,7 +4,7 @@ var functions = require("../functions")
 
 router.get('/:id', function (req, res) {
     var dbo = req.db;
-    id = functions.decodeID(req.params.id);
+    var id = functions.decodeID(req.params.id);
 
     var query = {
         '_id': id
@@ -19,12 +19,24 @@ router.get('/:id', function (req, res) {
                 if (err) throw err;
 
                 console.log('success');
-                console.log(doc.options.priorityTags);
-                console.log(doc.options.targetRent);
 
-                allTags = defaultTags.concat(doc.customTags);
+                var allTags;
+                var targetRent;
+                var priorityTags = [];
 
-                data = { 'allTags': allTags, 'priorityTags': doc.options.priorityTags, 'targetRent': doc.options.targetRent };
+                if (doc.options) {
+                    if (doc.options.targetRent)
+                        targetRent = doc.options.targetRent;
+
+                    if (doc.options.priorityTags)
+                        priorityTags = priorityTags.concat(doc.options.priorityTags);
+                }
+                if (doc.customTags)
+                    allTags = defaultTags.concat(doc.customTags);
+                else
+                    allTags = defaultTags;
+
+                data = { 'allTags': allTags, 'priorityTags':priorityTags, 'targetRent': targetRent };
                 res.render('options.ejs', { 'status': 200, 'data': data });
             });
         }
@@ -35,7 +47,6 @@ router.get('/:id', function (req, res) {
         }
 
     });
-
 
 });
 

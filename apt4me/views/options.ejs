@@ -17,12 +17,20 @@
         <%- include ('./partials/modals/newApt') %>
         <%- include ('./partials/modals/editApt') %>
         <%- include ('./partials/modals/newTag') %>
-        <p>Options</p>
+        <h2>Options</h2>
 
         <div>
-            Ideal monthly rent: <input id='targetRent' name='targetRent' placeholder='<%=targetRent%>' value='<%=targetRent%>' >
-            Priority Tags
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Ideal Monthly Rent:</span>
+                </div>
+                <input type="text" class="form-control" id='targetRent' name='targetRent' placeholder='<%=targetRent%>' 
+                    value='<%=targetRent%>' aria-describedby="basic-addon1">
+              </div>
+
+ 
             <div id='priorityAptTagGroup' class="btn-group-toggle" data-toggle="buttons">
+                <h3>Priority Feature Tags</h3>  
                 <% allTags.forEach(tag => { %>
                     <% id = tag.replace(" ", "-"); %>
                     
@@ -36,7 +44,7 @@
                         </span>
                     <% }}) %>
 
-                    <button type='button' onclick='updateOptions()'>update</button>
+                    <button type='button' class='btn btn-success' onclick='updateOptions()'>update</button>
             </div>
         </div>
 

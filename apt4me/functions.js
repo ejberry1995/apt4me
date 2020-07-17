@@ -2,8 +2,14 @@ const mongo = require('mongodb');
 
 module.exports = {
     decodeID: function(id) {
-    decodedID = Buffer.from(id, 'base64').toString('ascii')
-    return new mongo.ObjectID(decodedID);
+        decodedID = Buffer.from(id, 'base64').toString('ascii');
+        return new mongo.ObjectID(decodedID);
+    },
+
+    encodeID: function (id) {
+        id = id.toString();
+        encodedID = new Buffer(id);
+        return encodedID.toString('base64');
     },
 
     loadDefaultTags: function (dbo, callback) {

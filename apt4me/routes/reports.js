@@ -28,12 +28,12 @@ router.get('/:id', function (req, res) {
         console.log('Successful retrieval');
         console.log(doc);
 
-        var alerts = [null]
+        var alerts = []
         var scores = [];
         var options = doc.options;
         var apartments = doc.apartments;
 
-        if (apartments.length !== 0 && options.length !== 0) {
+        if (apartments && options) {
             apartments.forEach(apartment => {
                 score = calculatePoints(apartment, options);
                 console.log("score: " + score);
@@ -41,10 +41,10 @@ router.get('/:id', function (req, res) {
             });
         }
         else {
-            if (apartments.length === 0)
+            if (!apartments)
                 alerts.push('No apartments to calculate scores. There must be at least 1 apartment saved to generate a score report');
-            if (options.length === 0)
-                alerts.push('Preferences not set. Please Navigate to the Options page to set your apartment preferences.')
+            if (!options)
+                alerts.push('Preferences not set. Please Navigate to the Options page to set your apartment preferences before generating a score report.')
         }
 
         var data = { 'apartments': apartments, 'scores': scores, 'alerts': alerts };

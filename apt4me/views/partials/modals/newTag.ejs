@@ -9,12 +9,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <input id='newTagContext' name='newTagContext' >
-          New Tag:<input id="newTag">
+          <input id='newTagContext' name='newTagContext' hidden>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">New Tag</span>
+            </div>
+            <input type="text" id="newTag" class="form-control" aria-describedby="basic-addon1">
+          </div>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="createTag()">Save</button>
+          <button type="button" class="btn btn-success" onclick="createTag()">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@
         <%- include ('./partials/modals/viewApt') %>
         <%- include ('./partials/modals/newTag') %>
         
-        <H2>My Apartments</H2>
+        <h2>My Apartments</h2>
         <div id="toolbar" class="buttons-toolbar">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAptModal"
             onclick="loadAptCreator()">
@@ -46,10 +46,13 @@
                     <td> <%= apartments[i].beds %> </td>
                     <td> <%= apartments[i].baths %> </td>
                     <td> <%= apartments[i].rent %> </td>
-                    <td><button type='button' data-toggle="modal" data-target="#editAptModal"
-                            onclick="loadAptEditor('<%= i %>')">edit</button>
-                            <button type='button' 
-                            onclick="deleteApartment('<%= i %>')">delete</button>
+                    <td>
+                        <div class="btn-group">
+                            <button type='button' class="btn btn-primary" data-toggle="modal" data-target="#viewAptModal"
+                                onclick="loadAptViewer('<%= i %>')">Details</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAptModal"
+                                onclick="loadAptEditor('<%= i %>')">Edit</button>
+                        </div>
                     </td>
                 </tr>
                 <% }} %>

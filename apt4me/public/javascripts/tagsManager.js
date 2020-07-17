@@ -73,7 +73,6 @@ function removeTag() {
     //TODO: make call to route that handles deleting a custom tag
 }
 
-
 function getSelectedTags(context) {
     var selected = [];
     var id = '#' + context + 'AptTagGroup input:checked'

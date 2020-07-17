@@ -4,6 +4,8 @@ function loadAptCreator() {
     generateTagButtons('new');
 
     //clear the input fields
+    $('#complex').val('');
+    $('#name').val('');
     $('#beds').val('');
     $('#baths').val('');
     $('#rent').val('');
@@ -84,9 +86,9 @@ function loadAptEditor(index) {
 }
 
 function updateApartment() {
+    var index = $('#indexEdit').val();
     var complex = $('#complexEdit').val();
     var name = $('#nameEdit').val();
-    var index = $('#indexEdit').val();
     var beds = $('#bedsEdit').val();
     var baths = $('#bathsEdit').val();
     var rent = $('#rentEdit').val();
@@ -121,7 +123,8 @@ function updateApartment() {
     });
 }
 
-function deleteApartment(index) {
+function deleteApartment() {
+    var index = $('#indexEdit').val();
     var params = {'index': index };
 
     var id = getId();
@@ -131,11 +134,12 @@ function deleteApartment(index) {
         method: 'DELETE',
         data: params,
         success: function (data) {
-            console.log('success with data: ' + data);
+            console.log('success' );
             refreshAptList();
+            $('#editAptModal').modal('toggle');
         },
         error: function (data) {
-            console.log('failed to delete apartment with index ' + index);
+            console.log('failed');
         }
 
     });
